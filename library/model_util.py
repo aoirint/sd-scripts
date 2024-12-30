@@ -643,7 +643,7 @@ def convert_ldm_clip_checkpoint_v2(checkpoint, max_length):
             new_sd[key_pfx + "k_proj" + key_suffix] = values[1]
             new_sd[key_pfx + "v_proj" + key_suffix] = values[2]
 
-    # remove position_ids
+    # remove position_ids for newer transformer, which causes error :(
     if "text_model.encoder.text_model.embeddings.position_ids" in new_sd:
         # waifu diffusion v1.4
         new_sd.pop("text_model.encoder.text_model.embeddings.position_ids")
